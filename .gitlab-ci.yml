@@ -1,18 +1,31 @@
-services:
-  - postgres:latest
+cache:
+  paths:
+  - /cache
+
+stages:
+  - test
+  - deploy
 
 test:
   stage: test
+  services:
+  - postgres:latest
+  variables:
+      POSTGRES_DB: db_yamlator_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ''
   script:
   - apt-get update -qy
   - apt-get install -y nodejs
   - gem install bundler -v 1.17.3
   - bundle install --path /cache
-  - bundle exec rake db:create RAILS_ENV=test
-  - bundle exec rake test
+  - rake db:create RAILS_ENV=test
+  - rake test
 
 staging:
   stage: deploy
+  services:
+  - postgres:latest
   script:
   - gem install dpl -v 1.10.6
   - dpl --provider=heroku --app=yamlator --api-key=$HEROKU_STAGING_API_KEY
