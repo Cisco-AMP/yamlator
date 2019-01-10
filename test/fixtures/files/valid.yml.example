@@ -1,0 +1,5 @@
+---
+en:
+  level_one:
+    level_two:
+      a_key: "a_value"
