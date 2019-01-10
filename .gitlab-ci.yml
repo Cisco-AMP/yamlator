@@ -1,3 +1,6 @@
+services:
+  - postgres:latest
+
 test:
   stage: test
   script:
