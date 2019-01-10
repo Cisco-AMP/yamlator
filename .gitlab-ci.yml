@@ -2,6 +2,7 @@ test:
   stage: test
   script:
   - apt-get update -qy
+  - gem install bundler -v 2.0.1
   - bundle install --path /cache
   - bundle exec rake db:create RAILS_ENV=test
   - bundle exec rake test
