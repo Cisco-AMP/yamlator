@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'yaml_samples/new'
+
+  resources :yaml_samples
+
+  root 'yaml_samples#new'
 end
