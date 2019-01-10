@@ -16,4 +16,4 @@ test:
 
 production:
   <<: *default
-  database: db_yamlator_production
+  database: db_yamlator
