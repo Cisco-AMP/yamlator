@@ -12,6 +12,7 @@ staging:
   stage: deploy
   script:
   - gem install dpl -v 1.10.6
+  - gem install bundler -v 2.0.1
   - dpl --provider=heroku --app=yamlator --api-key=$HEROKU_STAGING_API_KEY
   only:
   - master
