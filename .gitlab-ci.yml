@@ -1,37 +1,38 @@
+image: ruby:2.5.3
+
 cache:
   paths:
-  - /cache
+  - vendor/bundle
 
-variables:
-  POSTGRES_HOST: postgres
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: ''
+services:
+  - postgres:10.6
+
 stages:
   - test
   - deploy
 
-test:
-  stage: test
-  services:
-  - postgres:latest
-  variables:
-      POSTGRES_DB: db_yamlator_test
-  script:
+variables:
+  BUNDLE_PATH: vendor/bundle
+
+before_script:
   - apt-get update -qy
   - apt-get install -y nodejs
   - gem install bundler -v 1.17.3
-  - bundle install --path /cache
-  - bundle exec rake db:create RAILS_ENV=test
-  - bundle exec rake test
+  - bundle check || bundle install --jobs $(nproc)
+  - cp config/database.yml.ci config/database.yml
+  - bundle exec rails db:create RAILS_ENV=test
+  - bundle exec rails db:schema:load RAILS_ENV=test
+
+test:
+  stage: test
+  script:
+    - bundle exec rake test
 
 staging:
   stage: deploy
-  services:
-  - postgres:latest
-  variables:
-    POSTGRES_DB: db_yamlator
   script:
   - gem install dpl -v 1.10.6
   - dpl --provider=heroku --app=yamlator --api-key=$HEROKU_STAGING_API_KEY
+  - heroku run rake db:migrate --exit-code --app=yamlator
   only:
   - master
