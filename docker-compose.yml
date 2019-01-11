@@ -1,0 +1,16 @@
+version: '3'
+volumes:
+  yamlator-sync: { external: true }
+services:
+  db:
+    image: postgres:10.6
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    build: .
+    volumes:
+      - yamlator-sync:/yamlator:nocopy
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

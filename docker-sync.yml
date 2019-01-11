@@ -1,0 +1,5 @@
+version: '2'
+syncs:
+  yamlator-sync:
+    strategy: native_osx
+    src: .
