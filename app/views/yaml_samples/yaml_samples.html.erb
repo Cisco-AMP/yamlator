@@ -1,0 +1,11 @@
+<%= javascript_include_tag('lang-yaml.js') %>
+<%= javascript_include_tag('prettify.js') %>
+<%= stylesheet_link_tag('prettify.css') %>
+
+<body onload="PR.prettyPrint()">
+<% @yaml_samples.each do |sample| %>
+  <pre class="prettyprint linenums lang-yaml"><%= sample.text %></pre>
+  <p>
+    <%= sample.errors %>
+  </p>
+<% end %>
