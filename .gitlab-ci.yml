@@ -33,6 +33,5 @@ staging:
   script:
   - gem install dpl -v 1.10.6
   - dpl --provider=heroku --app=yamlator --api-key=$HEROKU_STAGING_API_KEY
-  - heroku run rake db:migrate --exit-code --app=yamlator
   only:
   - master
