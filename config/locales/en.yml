@@ -10,3 +10,4 @@ en:
       line: "Line: "
       column: "Column: "
       message: "Message: "
+      no_error: "No errors found."
