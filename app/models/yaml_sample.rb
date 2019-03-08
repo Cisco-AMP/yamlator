@@ -1,9 +1,10 @@
 class YamlSample
   include ActiveModel::Model
-  attr_accessor :text
+  attr_accessor :text, :file_name
 
-  def initialize(text)
+  def initialize(text, file_name = nil)
     @text = text
+    @file_name = file_name
   end
 
   # Validates the syntax of the YAML.
