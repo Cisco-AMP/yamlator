@@ -1,0 +1,6 @@
+---
+en:
+  level_one:
+    level_two:
+      a_key: :a_symbol
+      b_key: :b_symbol
