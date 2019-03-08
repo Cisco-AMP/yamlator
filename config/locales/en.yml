@@ -1,4 +1,12 @@
 en:
   title: "YAMLator"
   sample:
+    text_entry_header: "Enter YAML text to lint:"
     text_entry_placeholder: "YAML to YAMLate"
+    text_entry_submit: "Submit YAML Text"
+    file_upload_header: "Or, submit a YAML file or a ZIP file to be linted (only the first 125 files will be linted):"
+    file_upload_submit: "Submit a File"
+    lint_result:
+      line: "Line: "
+      column: "Column: "
+      message: "Message: "

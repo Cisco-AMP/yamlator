@@ -1,23 +1,23 @@
 <h1><%= I18n.t('title') %></h1>
 <p>
-  Enter YAML text to lint:
+  <%= t("sample.text_entry_header") %>
 </p>
 <%= form_with scope: :yaml_sample, url: yaml_samples_path, local: true do |form| %>
   <p>
     <%= form.text_area :text, placeholder: t("sample.text_entry_placeholder") %>
   </p>
   <p>
-    <%= form.submit "Submit YAML Text"%>
+    <%= form.submit t("sample.text_entry_submit") %>
   </p>
 <% end %>
 <p>
-  Or, submit a YAML file or a ZIP file to be linted:
+  <%= t("sample.file_upload_header") %>
 </p>
 <%= form_with scope: :yaml_sample, url: yaml_samples_path, local: true do |form| %>
   <p>
     <%= form.file_field :file %>
   </p>
   <p>
-    <%= form.submit "Submit a File" %>
+    <%= form.submit t("sample.file_upload_submit") %>
   </p>
 <% end %>
