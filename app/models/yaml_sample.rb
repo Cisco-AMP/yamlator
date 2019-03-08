@@ -12,7 +12,7 @@ class YamlSample
   def errors
     yaml_errors = nil
     begin
-      YAML.safe_load(@text)
+      YAML.safe_load(@text, [Symbol])
     rescue Psych::SyntaxError => e
       yaml_errors = {
         line: e.line,
