@@ -3,7 +3,4 @@
 <%= stylesheet_link_tag('prettify.css') %>
 
 <body onload="PR.prettyPrint()">
-<% @yaml_samples.each do |sample| %>
-  <% @yaml_sample = sample %>
-  <%= render @yaml_sample %>
-<% end %>
+<%= render @yaml_sample %>

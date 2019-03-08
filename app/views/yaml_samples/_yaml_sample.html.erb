@@ -1,9 +1,16 @@
-<%= javascript_include_tag('lang-yaml.js') %>
-<%= javascript_include_tag('prettify.js') %>
-<%= stylesheet_link_tag('prettify.css') %>
-
-<body onload="PR.prettyPrint()">
-<pre class="prettyprint linenums lang-yaml"><%= @yaml_sample.text %></pre>
-<p>
-  <%= @yaml_sample.errors %>
-</p>
+<% if @yaml_sample.errors %>
+  <% if @yaml_sample.file_name %>
+    <h3 style="color:red"><%= @yaml_sample.file_name %></h3>
+  <% end %>
+  <pre class="prettyprint linenums lang-yaml"><%= @yaml_sample.text %></pre>
+  <p>
+    <%= t("sample.lint_result.line") + @yaml_sample.errors[:line].to_s %><br>
+    <%= t("sample.lint_result.column") + @yaml_sample.errors[:column].to_s %><br>
+    <%= t("sample.lint_result.message") + @yaml_sample.errors[:message] %><br>
+  </p>
+<% else %>
+  <% if @yaml_sample.file_name %>
+    <h3 style="color:green"><%= @yaml_sample.file_name %></h3>
+  <% end %>
+  <p><%= t("sample.lint_result.no_error") %></p>
+<% end %>
